@@ -6,8 +6,8 @@ class Program
     static void Main(string[] args)
     {   
         Console.Write("What is your percentage?"); 
-        string input = Console.ReadLine();
-        int percentage = int.Parse(input);
+        string Response = Console.ReadLine();
+        int percentage = int.Parse(Response);
 
         string Letter = "";
         
@@ -34,7 +34,7 @@ class Program
         {
             Letter = "F";
         }
-        int lastdigit = percentage % 10;
+        int lastdigit = percentage ;
 
         if(lastdigit >= 7)
         {
@@ -54,7 +54,7 @@ class Program
             Sign = "";
         }
         
-        if(Letter== "F")
+        if(Letter == "F")
         {
             Sign = "";
         }
