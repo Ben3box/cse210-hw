@@ -57,8 +57,8 @@ class Program
     
     foreach(string line in lines)
         {
-           // Console.WriteLine(line);
-           // line will have something like this
+           
+           
            string[]parts = line.Split("~~~~");
            //parts[o]=Benjamin
            //parts[1]=Iriganje
