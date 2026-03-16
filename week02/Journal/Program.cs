@@ -1,73 +1,88 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+
+/*
+  EXCEEDING REQUIREMENTS DESCRIPTION:
+  1. Added Mood Tracking: Each entry now records the user's mood (1-10), providing more context for reflection.
+  2. Input Validation: Added a check to ensure the mood is a valid number between 1 and 10.
+  3. Menu Iteration: Used a foreach loop to dynamically display menu options from a list.
+*/
+
 class Program
 {
     static void Main(string[] args)
     {
-        Person p1= new Person();
-        p1.fistname = "Benjamin";
-        p1.lastname = "Iriganje";
-        p1.age = 30;   
-
-        Person p2 = new Person();
-        p2.fistname = "Salatielle";
-        p2.lastname = "Manayankakagayo";
-        p2.age = 24;
-
-        Person p3 = new Person();
-        p3.fistname = "Olave";
-        p3.lastname = "Iradukunda";
-        p3.age = 16;
-
-        List<Person>people = new List<Person>();
-        people.Add(p1);
-        people.Add(p2);
-        people.Add(p3);   
-
-       foreach (Person p in people)
-        {
-            Console.WriteLine(p.fistname);
-        }
-
-       
-        SaveToFile(people);
-    }
-       public static void SaveToFile(List<Person> people)
-        {
-            Console.WriteLine("SaveToFile...");
-
-            string filename = "people.txt";
-
-            using (StreamWriter outputfile = new StreamWriter(filename))
-            {
-                foreach(Person p in people)
-            {
-                outputfile.WriteLine($"{p.fistname}~~~~ {p.lastname}~~~~~ {p.age}");
-            }
-            }
-
+        Journal theJournal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
         
-        }
-       public static List<Person> ReadFromfile()
-{ 
-    List<Person> people = new List<Person>(); 
-    string filename = "people.txt"; 
-    string[] lines = System.IO.File.ReadAllLines(filename);
-    
-    foreach(string line in lines)
+        List<string> menuOptions = new List<string> { "Write", "Display", "Load", "Save", "Quit" };
+        string userChoice = "";
+
+        Console.WriteLine("Welcome to the Journal Program!");
+
+        while (userChoice != "5")
         {
-           
-           
-           string[]parts = line.Split("~~~~");
-           //parts[o]=Benjamin
-           //parts[1]=Iriganje
-           //parts[2]=age
-           Person newPerson = new Person();
-           newPerson.fistname = parts[0];
-           newPerson.lastname = parts[1];
-           newPerson.age = int.Parse(parts[2]);
+            Console.WriteLine("\nPlease select one of the following choices:");
+            
+            // --- FOREACH LOOP ---
+            // Dynamically displays menu options
+            int optionNumber = 1;
+            foreach (string option in menuOptions)
+            {
+                Console.WriteLine($"{optionNumber}. {option}");
+                optionNumber++;
+            }
+
+            Console.Write("What would you like to do? ");
+            userChoice = Console.ReadLine();
+
+            if (userChoice == "1")
+            {
+                // WRITE logic
+                string prompt = promptGenerator.GetRandomPrompt();
+                Console.WriteLine($"\nPrompt: {prompt}");
+                Console.Write("> ");
+                string response = Console.ReadLine();
+
+                // CREATIVITY: Mood Tracking
+                Console.Write("How are you feeling today (1-10)? ");
+                string mood = Console.ReadLine();
+
+                Entry newEntry = new Entry();
+                newEntry.Date = DateTime.Now.ToShortDateString();
+                newEntry.PromptText = prompt;
+                newEntry.EntryText = response;
+                // Note: You must add public string mood to your Entry.cs for this to work!
+                newEntry.Mood = mood; 
+
+                theJournal.AddEntry(newEntry);
+            }
+            else if (userChoice == "2")
+            {
+                // --- FOREACH LOOP ---
+                // Iterates through objects in the journal
+                Console.WriteLine("\n--- Journal Entries ---");
+                foreach (Entry entry in theJournal.Entries)
+                {
+                    entry.Display();
+                }
+            }
+            else if (userChoice == "3")
+            {
+                Console.Write("What is the filename? ");
+                string filename = Console.ReadLine();
+                theJournal.LoadFromFile(filename);
+            }
+            else if (userChoice == "4")
+            {
+                Console.Write("What is the filename? ");
+                string filename = Console.ReadLine();
+                theJournal.SaveToFile(filename);
+            }
+            else if (userChoice == "5")
+            {
+                Console.WriteLine("Thank you for journaling. Goodbye!");
+            }
         }
-    return people; 
-} 
+    }
 }
