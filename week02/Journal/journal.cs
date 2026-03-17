@@ -25,15 +25,13 @@ public class Journal
             entry.Display();
         }
     }
-
     public void SaveToFile(string file)
     {
         using (StreamWriter outputFile = new StreamWriter(file))
         {
             foreach (Entry entry in Entries)
             {
-                // Saving using the | separator
-                outputFile.WriteLine($"{entry.Date}|{entry.PromptText}|{entry.EntryText}");
+                outputFile.WriteLine($"{entry.Date}|{entry.PromptText}|{entry.EntryText}|{entry.Author.fistname}|{entry.Author.lastname}|{entry.Author.age}");
             }
         }
         Console.WriteLine("Journal saved successfully!");
@@ -43,7 +41,7 @@ public class Journal
     {
         if (File.Exists(file))
         {
-            Entries.Clear(); // Requirement: Replace current entries
+            Entries.Clear(); 
             string[] lines = File.ReadAllLines(file);
 
             foreach (string line in lines)
