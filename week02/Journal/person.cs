@@ -1,6 +1,6 @@
 public class Person
 {
-    public string fistname;
+    public string firstname;
     public string lastname;
     public int age;
 }

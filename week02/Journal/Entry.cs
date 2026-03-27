@@ -11,7 +11,7 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"Date: {Date} - Author: {Author.fistname} {Author.lastname}");
+        Console.WriteLine($"Date: {Date} - Author: {Author.firstname} {Author.lastname}");
         Console.WriteLine($"Mood: {Mood}"); 
         Console.WriteLine($"{EntryText}");
         Console.WriteLine("------------------------------------------");

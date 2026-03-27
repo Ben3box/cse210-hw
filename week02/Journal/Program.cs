@@ -68,7 +68,7 @@ class Program
             }
             else if (userChoice == "5")
             {
-                Console.WriteLine("Thank you for journaling. Goodbye!");
+                Console.WriteLine("Thank you for journalizing. Goodbye!");
             }
         }
     }
