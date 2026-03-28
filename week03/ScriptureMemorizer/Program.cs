@@ -145,3 +145,38 @@ class Program
         return list;
     }
 }
+
+// EXCEEDING REQUIREMENTS EXPLANATION
+//
+// This program goes beyond the core scripture memorization requirements in several ways:
+//
+// 1. Difficulty Levels:
+//    The user can choose between easy, medium, and hard modes.
+//    - Easy: Uses only single verses and hides fewer words per round.
+//    - Medium: Selects a random verse from a scripture range.
+//    - Hard: Uses full scripture ranges and hides more words each round.
+//    This adds customization and progression to the memorization experience.
+//
+// 2. Scripture File Loading:
+//    Scriptures are loaded dynamically from an external file (scriptures.txt),
+//    allowing easy expansion without modifying the code.
+//    The program also safely handles invalid or missing data.
+//
+// 3. Support for Verse Ranges:
+//    The program supports both single verses and verse ranges (e.g., John 3:16),
+//    making it more flexible than the basic requirement.
+//
+// 4. Random Verse Selection within Ranges:
+//    In medium mode, a random verse is selected from a range,
+//    adding variety and unpredictability.
+//
+// 5. Progress Tracking:
+//    The program displays the percentage of words hidden,
+//    giving users feedback on their memorization progress.
+//
+// 6. Graceful Fallback:
+//    If no scriptures match the selected difficulty,
+//    the program automatically falls back to all available scriptures.
+//
+// Overall, these enhancements improve usability, flexibility, and engagement
+// beyond the core assignment requirements.
