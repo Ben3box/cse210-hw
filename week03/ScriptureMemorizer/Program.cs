@@ -30,11 +30,12 @@ This program goes beyond the core requirements in the following ways:
    - Prevents wasting turns on already hidden words.
 
 6. Progress Indicator:
-   - Displays percentage of words hidden to track progress.
+   - The program displays percentage of words hidden to track progress.
 
 These enhancements improve usability and help users memorize scriptures more effectively.
 ==========================================
 */
+// so let's see how are those we told over in comment in the code  in order to see if what we said it is reality. 
 
 // WORD CLASS
 public class Word
